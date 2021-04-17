@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tweet;
+
 use Illuminate\Http\Request;
-use App\Repositories\TweetRepository; 
+use App\Http\Requests\CreateTweetRequest;
+use App\Repositories\PublishRepositoryInterface; 
 
 class TweetController extends Controller
 {
@@ -15,9 +16,13 @@ class TweetController extends Controller
      */
     private $tweetRepository; 
 
-    public function __construct(TweetRepository $tweetRepository){
+
+
+    public function __construct(PublishRepositoryInterface $tweetRepository){
         $this->tweetRepository = $tweetRepository;
     }
+
+
 
     public function index()
     {
@@ -26,15 +31,6 @@ class TweetController extends Controller
         return $tweets;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -42,9 +38,11 @@ class TweetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTweetRequest $request)
     {
-        //
+        $tweet = $this->tweetRepository->store_tweet($request->validated()); 
+        return $tweet ?  response()->json($tweet,201) :  response()->json(['message' => 'tweet not created'],400);
+        
     }
 
     /**

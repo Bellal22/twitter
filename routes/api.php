@@ -16,6 +16,11 @@ use App\Http\Controllers\API\AuthController;
 |
 */
 
+Route::fallback(function(){
+    return response()->json([
+        'message' => 'endpoint Not Found. If error persists, contact me'], 404);
+});
+
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
@@ -26,7 +31,7 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::get('/tweets', [App\Http\Controllers\TweetController::class, 'index']);
 
-// Route::middleware(['auth:api'])->group(function () {
-//     Route::get('/tweets', [App\Http\Controllers\TweetController::class, 'index']);
+Route::middleware(['auth:api'])->group(function () {
+    Route::post('/tweets', [App\Http\Controllers\TweetController::class, 'store']);
 
-// });
+});
