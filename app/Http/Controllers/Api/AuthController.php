@@ -69,12 +69,6 @@ class AuthController extends Controller
 
         }
         
-        // if (!auth()->attempt($loginData)) {
-        //   return response(['message' => 'Invalid Credentials']);
-        // }
-        
-        // $accessToken = auth()->user()->createToken('authToken')->accessToken;
-        // return response(['user' => auth()->user(), 'access_token' => $accessToken]);
     }
         /**
      * Get the rate limiting throttle key for the request.
