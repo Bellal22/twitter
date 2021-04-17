@@ -33,5 +33,6 @@ Route::get('/tweets', [App\Http\Controllers\TweetController::class, 'index']);
 
 Route::middleware(['auth:api'])->group(function () {
     Route::post('/tweets', [App\Http\Controllers\TweetController::class, 'store']);
+    Route::post('/follows', [App\Http\Controllers\FollowController::class, 'store']);
 
 });

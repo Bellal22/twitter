@@ -9,14 +9,7 @@ use App\Repositories\PublishRepositoryInterface;
 
 class TweetController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     private $tweetRepository; 
-
-
 
     public function __construct(PublishRepositoryInterface $tweetRepository){
         $this->tweetRepository = $tweetRepository;
@@ -24,6 +17,12 @@ class TweetController extends Controller
 
 
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    
     public function index()
     {
         $tweets = $this->tweetRepository->all();
