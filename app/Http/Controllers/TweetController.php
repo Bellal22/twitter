@@ -26,8 +26,9 @@ class TweetController extends Controller
     public function index()
     {
         $tweets = $this->tweetRepository->all();
-        
         return $tweets;
+
+        
     }
 
 

@@ -15,13 +15,17 @@ class Tweet extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public static function count_all()
+    {
+        return self::count();
+    }
     public function format()
     {
         return [
-            'tweet_id' => $this->id,
+            'user_id' => $this->id,
             'created_by' => $this->user->name,
             'tweet' => $this->text,
-            'created_at' => $this->created_at->diffForHumans() 
+            'created_at' => $this->created_at->diffForHumans(),
         ];
     }
 

@@ -30,6 +30,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::get('/tweets', [App\Http\Controllers\TweetController::class, 'index']);
+Route::get('/users', [App\Http\Controllers\UserController::class, 'index']);
 
 Route::middleware(['auth:api'])->group(function () {
     Route::post('/tweets', [App\Http\Controllers\TweetController::class, 'store']);
